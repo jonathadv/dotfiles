@@ -51,6 +51,8 @@ install_vim() {
 
 add_custom_sources() { 
     local sourceable_dir="${script_dir}/sourceable"
+    local sourceable_file="${HOME}/.sourceable"
+    local oh_my_zsh_dir="${HOME}/.oh-my-zsh"
     local files
     
     cd "${sourceable_dir}"
@@ -60,16 +62,14 @@ add_custom_sources() {
     files="${files/README.MD/}"
     
     if [[ -n "${files}" ]]; then
-        {        
-           echo ''
-           echo '# Sourced files'        
-        } | tee -a "${HOME}/.bashrc" "${HOME}/.zshrc" 1> /dev/null
-        
+        mkdir -p "${oh_my_zsh_dir}"
+        echo "source ${HOME}/.sourceable" >> "${oh_my_zsh_dir}/oh-my-zsh.sh"
+
+        echo '# Sourced files' >>  "${sourceable_file}"
+ 
         for f in ${files}; do 
-            echo "Sourcing file '${f}' in .bashrc and in .zshrc"
-            { 
-              echo "source ${sourceable_dir}/${f}"
-            } | tee -a "${HOME}/.bashrc" "${HOME}/.zshrc" 1> /dev/null
+            echo "Sourcing file '${f}' in ${sourceable_file}"
+            echo "source ${sourceable_dir}/${f}" >> "${sourceable_file}"
         done
     else
         echo 'No files to source.'

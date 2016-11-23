@@ -42,7 +42,9 @@ ZSH_THEME="miloshadzic"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
 
-source $ZSH/oh-my-zsh.sh
+if [[ -f $ZSH/oh-my-zsh.sh  ]]; then
+  source $ZSH/oh-my-zsh.sh
+fi
 
 # Customize to your needs...
 export TERM=xterm-256color
