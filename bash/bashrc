@@ -19,8 +19,8 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-if [[ "${HOME}/.sourceable" ]]; then
-  source "${HOME}/.sourceable"
+if [[ "${HOME}/.sourceable/sourceable" ]]; then
+  source "${HOME}/.sourceable/sourceable"
 fi
 
 # Configure base16 colors
