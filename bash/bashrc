@@ -1,0 +1,28 @@
+# Setting the TERM variable to support colors
+export TERM=xterm-256color
+
+# Add /sbin and /usr/sbin to PATH
+export PATH=${PATH}:/sbin:/usr/sbin
+
+# Bash aliases
+alias bash-clean='history -c; echo > ~/.bash_history; exit'
+
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+if [[ "${HOME}/.personal_aliases" ]]; then
+  source "${HOME}/.personal_aliases"
+fi
+
+# Configure base16 colors
+BASE16_SHELL="$HOME/.config/base16-shell/scripts/base16-default-dark.sh"
+[[ -s $BASE16_SHELL  ]] && source $BASE16_SHELL
