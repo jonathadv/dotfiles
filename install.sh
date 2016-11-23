@@ -6,8 +6,8 @@ set -o pipefail
 set -o nounset
 
 
-declare -r script_full_path="$(realpath $0)"
-declare -r script_dir="$(dirname ${script_full_path})"
+declare -r script_dir="$( cd "$(dirname "$0")" ; pwd -P )"
+echo ${script_dir}
 
 install_bash() {
     echo 'Configuring Bash.'
