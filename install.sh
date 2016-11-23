@@ -29,7 +29,7 @@ install_base16_shell() {
 }
 
 install_vim() {
-    echo 'Configuring vim.'
+    echo 'Configuring VIM.'
 
     [[ -d "${HOME}/.vim" ]] && rm -rf "${HOME:-/tmp}/.vim"
     ln -fs "${script_dir}/vim" "${HOME}/.vim"
@@ -40,10 +40,10 @@ install_vim() {
     git submodule update
     
     # Commenting colorscheme to prevent error when opening
-    # vim for the firt time. It'll be reverted right below.
+    # VIM for the firt time. It'll be reverted right below.
     sed -i 's/colorscheme/"""colorscheme/g' "${HOME}/.vimrc"
     
-    echo "Opening vim and running: VundleInstall."
+    echo "Opening VIM and running: VundleInstall."
     vim -c 'VundleInstall' -c 'quit' -c 'quit'
     
     sed -i 's/"""colorscheme/colorscheme/g' "${HOME}/.vimrc"
