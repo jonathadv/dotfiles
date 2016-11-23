@@ -49,11 +49,39 @@ install_vim() {
     sed -i 's/"""colorscheme/colorscheme/g' "${HOME}/.vimrc"
 }
 
+add_custom_sources() { 
+    local sourceable_dir="${script_dir}/sourceable"
+    local files
+    
+    cd "${sourceable_dir}"
+    
+    echo "Looking for files to source..."    
+    files=$(ls 2> /dev/null) || true
+    files="${files/README.MD/}"
+    
+    if [[ -n "${files}" ]]; then
+        {        
+           echo ''
+           echo '# Sourced files'        
+        } | tee -a "${HOME}/.bashrc" "${HOME}/.zshrc" 1> /dev/null
+        
+        for f in ${files}; do 
+            echo "Sourcing file '${f}' in .bashrc and in .zshrc"
+            { 
+              echo "source ${sourceable_dir}/${f}"
+            } | tee -a "${HOME}/.bashrc" "${HOME}/.zshrc" 1> /dev/null
+        done
+    else
+        echo 'No files to source.'
+    fi
+}
+
 install() {
-    install_base16_shell    
+    #install_base16_shell 
     install_bash
     install_zsh
     install_vim
+    add_custom_sources
 }
 
 install
