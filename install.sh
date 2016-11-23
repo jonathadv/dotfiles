@@ -77,7 +77,7 @@ add_custom_sources() {
 }
 
 install() {
-    #install_base16_shell 
+    install_base16_shell
     install_bash
     install_zsh
     install_vim
