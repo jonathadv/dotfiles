@@ -77,3 +77,9 @@ set tabstop=4
 set sw=4
 set expandtab
 set shiftround
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set plugin options                                                          "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:nerdtree_tabs_open_on_console_startup=1
+let NERDTreeShowBookmarks=1
