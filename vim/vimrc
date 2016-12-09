@@ -28,7 +28,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chriskempson/base16-vim'
-"Plugin 'Valloric/YouCompleteMe' "enable it only if you want YouCompleteMe.
+Plugin 'Valloric/YouCompleteMe' "enable it only if you want YouCompleteMe.
 
 call vundle#end()
 
@@ -62,7 +62,7 @@ set relativenumber " show relative line numbers
 set cul " highlight current line
 set hlsearch " highlight search matches
 set incsearch " highlight searches as yout type
-set ignorecase " ignore case on searching
+"set ignorecase " ignore case on searching
 set ruler " show info in bottom
 set showcmd " show commands in ruler
 set showmatch
