@@ -9,13 +9,29 @@ set -o nounset
 declare -r script_dir="$( cd "$(dirname "$0")" ; pwd -P )"
 echo ${script_dir}
 
-install_bash() {
+do_backup() {
+    local full_filename="${1}"
+    local dir_name="$(dirname ${full_filename})"
+    local new_file="$(basename ${full_filename})_$(date +%Y_%m_%d_%s).bkp"
+    
+    if [[ ! -e "${full_filename}" ]]; then
+        echo "File ${full_filename} not found. No backup do be done."
+        return
+    fi
+    
+    echo "Backuping ${full_filename} as ${dir_name}/${new_file}"
+    cp -vR "${full_filename}" "${dir_name}/${new_file}"
+}
+
+install_bash() {    
+    do_backup "${HOME}/.bashrc"
     echo 'Configuring Bash.'
     
     ln -fs "${script_dir}/bash/bashrc" "${HOME}/.bashrc"
 }
 
 install_zsh() {
+    do_backup "${HOME}/.zshrc"
     echo 'Configuring ZSH.'
     
     ln -fs "${script_dir}/zsh/zshrc" "${HOME}/.zshrc"
@@ -29,6 +45,7 @@ install_base16_shell() {
 }
 
 install_vim() {
+    do_backup "${HOME}/.vimrc"
     echo 'Configuring VIM.'
 
     [[ -d "${HOME}/.vim" ]] && rm -rf "${HOME:-/tmp}/.vim"
@@ -55,6 +72,8 @@ add_custom_sources() {
     local sourceable_file="${sourceable_home_dir}/sourceable"
     local oh_my_zsh_dir="${HOME}/.oh-my-zsh"
     local files
+    
+    do_backup "${HOME}/.sourceable"
     
     cd "${sourceable_dir}"
     
