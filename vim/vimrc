@@ -28,7 +28,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'chriskempson/base16-vim'
-Plugin 'Valloric/YouCompleteMe' "enable it only if you want YouCompleteMe.
+"Plugin 'Valloric/YouCompleteMe' "enable it only if you want YouCompleteMe.
 
 call vundle#end()
 
@@ -83,3 +83,17 @@ set shiftround
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:nerdtree_tabs_open_on_console_startup=1
 let NERDTreeShowBookmarks=1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set command shortcuts                                                       "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Copy selection to clipboard. If no selection, the whole file's copied.
+map <F2> :w !xclip -select clipboard<cr><cr>
+
+" Remove trailing spaces in the whole file
+map <F3> :%s/[ ]\+$//g<cr>
+
+" Set default colorscheme
+map <F4> :colorscheme default<cr>
+
